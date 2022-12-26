@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Menu</title>
+    <style>
+        .container {
+            width:60%;
+            margin: 10px auto;
+        }
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        li {
+            display: inline-block;
+            margin-right: 10px;
+            margin-top: 10px;
+        }
+        li > a {
+            color: black;
+            text-transform: uppercase;
+            letter-spacing: .2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+    !!!Global Menu!!!
+    <nav>
+        <ul>
+            <li>
+                <a href="{% url 'owner:owner' %}">Owner</a>
+            </li>
+            <li>
+                <a href="#">Стаи</a>
+            </li>
+            <li>
+                <a href="#">Фирми</a>
+            </li>
+            <li>
+                <a href="#">Цени</a>
+            </li>
+            <li>
+                <a href="#">Фактура</a>
+            </li>
+        </ul>
+    </nav>
+    </div>
+</body>
+</html>

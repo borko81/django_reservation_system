@@ -1,0 +1,30 @@
+<nav class="navbar navbar-expand navbar-dark bg-dark my-2">
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item {{menu_class}}">
+                <a class="nav-link" href="{% url 'owner:owner' %}">Menu</a>
+            </li>
+            <li class="nav-item {{owner_class}}">
+                <a class="nav-link" href="{% url 'owner:owner_info' %}">Данни за фирмата</a>
+            </li>
+            <li class="nav-item {{bank_class}}">
+                <a class="nav-link" href="{% url 'owner:owner_bank' %}">Данни за банка</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{fak_class}}" href="{% url 'owner:owner_fak_id' %}">Номера на фактура</a>
+            </li>
+        </ul>
+        <!-- login logout -->
+        <ul class="nav navbar-nav">
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}">{{user.username}} / Logout</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'login' %}">Login</a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
