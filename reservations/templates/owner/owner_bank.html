@@ -1,5 +1,9 @@
 {% extends 'owner/base.html' %}
 
 {% block content %}
-2
+<form action="{% url 'owner:owner_bank' %}" method="POST">
+    {% csrf_token %}
+    {{form}}
+    <input type="submit" class="form-control btn btn-sm btn-secondary mt-2 custom_submit">
+</form>
 {% endblock content %}

@@ -36,3 +36,8 @@ class OwnerLastFakIdModel(models.Model):
 
     def __str__(self) -> str:
         return f"Last fak is {self.last_fak_id} last pr is {self.last_pr_id}"
+
+    def save(self, *args, **kwargs):
+        self.last_fak_id = str(int(self.last_fak_id)).zfill(10)
+        self.last_pr_id = str(int(self.last_pr_id)).zfill(10)
+        super().save(*args, **kwargs)
