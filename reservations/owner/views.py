@@ -21,6 +21,7 @@ def owner_index(request):
     return render(request, template_name="owner/base.html", context=context)
 
 
+@login_required
 def owner_create_update(request):
     try:
         instance = models.OwnerModel.objects.all().last()
