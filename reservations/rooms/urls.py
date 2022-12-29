@@ -26,6 +26,7 @@ urlpatterns = [
     path("room/delete/<int:id>/", rooms_views.room_delete, name="room_delete"),
     
     # Bed's
+    path("bed/", bed_views.beds_menu, name="bed"),
     path("beds/", bed_views.beds_show, name="beds"),
     path("bed/create/", bed_views.bed_create, name="bed_create"),
     path("bed/edit/<int:id>/", bed_views.bed_edit, name="bed_edit"),

@@ -16,3 +16,12 @@ class FloorForm(BaseForms, forms.ModelForm):
         fields = "name".split()
 
         labels = {"name": "Етаж"}
+        
+        
+class BedsForm(BaseForms, forms.ModelForm):
+    class Meta:
+        model = models.BedModel
+        fields = 'name name_short age dop'.split()
+        
+        labels = {"name": "Име", "name_short": "Кратко име", "dop": "Допълнително", "age": "Макс. възр."}
+

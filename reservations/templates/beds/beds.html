@@ -1,0 +1,32 @@
+{% extends 'beds/base.html' %}
+{% load static %}
+
+{% block content %}
+<table class="table mt-2">
+    <thead class="table-dark">
+        <tr>
+            <th>Име</th>
+            <th>Кратко име</th>
+            <th>Години макс</th>
+            <th>Допълнително</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for bed in beds %}
+            <tr>
+                <td>{{bed.name}}</td>
+                <td>{{bed.name_short}}</td>
+                <td>{{bed.age|default:""}}</td>
+                <td>{{bed.dop}}</td>
+                <td><a href="{% url 'rooms:bed_edit' bed.id %}" class="btn btn-sm btn-success">Edit</a></td>
+                <td><a href="{% url 'rooms:bed_delete' bed.id %}" class="btn btn-sm btn-danger">Delete</a></td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}
+{% block end_script %}
+<script src="{% static 'js/js.js' %}" type="text/javascript"></script>
+{% endblock end_script %}

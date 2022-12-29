@@ -5,7 +5,7 @@ class BedModel(models.Model):
     name = models.CharField(max_length=120, unique=True)
     name_short = models.CharField(max_length=5)
     dop = models.BooleanField(default=False)
-    age = models.IntegerField()
+    age = models.IntegerField(blank=True, null=True)
 
     def __str__(self) -> str:
         return self.name
