@@ -1,0 +1,28 @@
+{% extends 'floors/base.html' %}
+{% load static %}
+
+{% block content %}
+<table class="table">
+    <thead class="table-dark">
+        <tr>
+            <th>#</th>
+            <th>Име</th>
+            <th>Действие</th>
+            <th>Действие</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for floor in floors %}
+            <tr>
+                <td>{{floor.id}}</td>
+                <td>{{floor.name}}</td>
+                <td><a href="{% url 'rooms:floor_edit' floor.id %}" class="btn btn-sm btn-success">Edit</a></td>
+                <td><a href="{% url 'rooms:floor_delete' floor.id %}" class="btn btn-sm btn-danger" data-id="{{floor.id}}">Delete</a></td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}
+{% block end_script %}
+<script src="{% static 'js/js.js' %}" type="text/javascript"></script>
+{% endblock end_script %}

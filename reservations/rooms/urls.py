@@ -8,7 +8,7 @@ urlpatterns = [
     path('', views.menu_index, name="menu_index"),
     
     # Floor
-    path('flors/', floor_views.floors_show, name="floots"),
+    path('floors/', floor_views.floors_show, name="floors"),
     path('floor/create/', floor_views.floor_create, name="floor_create"),
     path('flors/edit/<int:id>/', floor_views.floor_edit, name="floor_edit"),
     path('flors/delete/<int:id>/', floor_views.floor_delete, name="floor_delete"),
