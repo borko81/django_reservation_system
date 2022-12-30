@@ -36,7 +36,7 @@ class RoomTypeModel(models.Model):
 
 class RoomModel(models.Model):
     name = models.CharField(max_length=12, unique=True)
-    description = models.TextField()
+    description = models.CharField(max_length=120, null=True, blank=True)
     floor_id = models.ForeignKey(FloorModel, on_delete=models.SET_NULL, null=True, blank=True)
     type_id = models.ForeignKey(RoomTypeModel, on_delete=models.SET_NULL, null=True, blank=True)
 

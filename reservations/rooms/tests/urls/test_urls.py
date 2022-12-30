@@ -4,6 +4,7 @@ from django.urls import resolve, reverse
 from rooms.floor_views import *
 from rooms.bed_views import *
 from rooms.type_views import *
+from rooms.rooms_views import *
 
 
 class TestFloorUrls(SimpleTestCase):
@@ -62,3 +63,25 @@ class TestTypesUrls(SimpleTestCase):
     def test_delete_type_url(self):
         url = reverse("rooms:type_delete", args=[1])
         self.assertEqual(resolve(url).func, type_delete)
+        
+        
+class TestRoomUrls(SimpleTestCase):
+    def test_room_menu_url(self):
+        url = reverse("rooms:room")
+        self.assertEqual(resolve(url).func, rooms_menu)
+        
+    def test_room_show_url(self):
+        url = reverse("rooms:rooms")
+        self.assertEqual(resolve(url).func, rooms_show)
+        
+    def test_room_create_new_url(self):
+        url = reverse("rooms:room_create")
+        self.assertEqual(resolve(url).func, room_create)
+        
+    def test_room_edit_url(self):
+        url = reverse("rooms:room_edit", args=[1])
+        self.assertEqual(resolve(url).func, room_edit)
+        
+    def test_room_delete_url(self):
+        url = reverse("rooms:room_delete", args=[1])
+        self.assertEqual(resolve(url).func, room_delete)

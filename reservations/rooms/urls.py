@@ -18,6 +18,7 @@ urlpatterns = [
     path("types/edit/<int:id>/", type_views.type_edit, name="type_edit"),
     path("types/delete/<int:id>/", type_views.type_delete, name="type_delete"),
     # Rooms
+    path("room/", rooms_views.rooms_menu, name="room"),
     path("rooms/", rooms_views.rooms_show, name="rooms"),
     path("room/create/", rooms_views.room_create, name="room_create"),
     path("room/edit/<int:id>/", rooms_views.room_edit, name="room_edit"),

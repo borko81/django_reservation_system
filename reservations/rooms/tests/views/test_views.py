@@ -2,11 +2,12 @@ from django.test import TestCase, Client
 from django.urls import reverse
 from django.contrib.auth.models import User
 
-from rooms.models import FloorModel, BedModel, RoomTypeModel
+from rooms.models import FloorModel, BedModel, RoomTypeModel, RoomModel
 
 from rooms.floor_views import *
 from rooms.type_views import *
 from rooms.bed_views import *
+from rooms.rooms_views import *
 
 
 class TestUrlsIsProtectedByUserLogin(TestCase):
@@ -54,6 +55,18 @@ class TestUrlsIsProtectedByUserLogin(TestCase):
 
         response = self.client.get(reverse("rooms:type_delete", args=[1]))
         self.assertEqual(response.status_code, 302)
+        
+        # Room
+        rooms_urls = ["rooms:room", "rooms:rooms", "rooms:room_create"]
+        room_edit_delete = ["rooms:room_edit", "rooms:room_delete"]
+        
+        for url_past in rooms_urls:
+            response = self.client.get(reverse(url_past))
+            self.assertEqual(response.status_code, 302)
+            
+        for url_past in room_edit_delete:
+            response = self.client.get(reverse(url_past, args=[1]))
+            self.assertEqual(response.status_code, 302)
 
 
 class TestFloorTemplate(TestCase):
@@ -149,4 +162,39 @@ class TestRoomTypesTemplateSuccess(TestCase):
         self.assertTemplateUsed(response, "types/create_type.html")
 
         response = self.client.get(reverse("rooms:type_delete", args=[1]))
+        self.assertEqual(response.status_code, 200)
+
+
+class TestRoomTemplateUsageWhenUserSign(TestCase):
+    def setUp(self):
+        self.client = Client()
+        self.user = User.objects.create_user(username="test", password="test")
+        self.client.login(username="test", password="test")
+        floor = FloorModel.objects.create(name=1)
+        type = RoomTypeModel.objects.create(name="One", r_bed=1)
+        RoomModel.objects.create(name="One", floor_id=floor, type_id=type)
+        
+    # Room
+    def test_room_menu_template_usage(self):
+        response = self.client.get(reverse("rooms:room"))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'rooms/base.html')
+        
+    def test_room_show_template(self):
+        response = self.client.get(reverse("rooms:rooms"))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'rooms/rooms.html')
+        
+    def test_room_edit_template(self):
+        response = self.client.get(reverse("rooms:room_edit", args=[1]))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'rooms/create_room.html')
+        
+    def test_room_create_template(self):
+        response = self.client.get(reverse("rooms:room_create"))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'rooms/create_room.html')
+        
+    def test_room_delete_template(self):
+        response = self.client.get(reverse("rooms:room_delete", args=[1]))
         self.assertEqual(response.status_code, 200)

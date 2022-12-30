@@ -1,0 +1,36 @@
+{% extends 'rooms/base.html' %}
+{% load static %}
+
+{% block content %}
+<table class="table">
+    <thead class="table-dark">
+        <tr>
+            <th>Име</th>
+            <th>Тип</th>
+            <th>Описание</th>
+            <th>Етаж</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for room in rooms %}
+        <tr>
+            <td>{{room.name}}</td>
+            <td><a href="{% url 'rooms:types' %}?type={{room.type_id.id}}" class="stretched-link text-secondary"><<{{room.type_id.name}}>></a></td>
+            <td>{{room.description|default:""}}</td>
+            <td>{{room.floor_id.name}}</td>
+            <td><a href="{% url 'rooms:room_edit' room.id %}" class="btn btn-sm btn-success">Edit</a></td>
+            <td><a href="{% url 'rooms:room_delete' room.id %}" class="btn btn-sm btn-danger" data-id="{{room.id}}">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% for name, total in counter.items %}
+    {{name}} / {{total}} <br>
+{% endfor %}
+Общо: {{total}}
+{% endblock content %}
+{% block end_script %}
+<script src="{% static 'js/js.js' %}" type="text/javascript"></script>
+{% endblock end_script %}

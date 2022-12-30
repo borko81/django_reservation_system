@@ -38,3 +38,16 @@ class RoomTypeForm(BaseForms, forms.ModelForm):
             "d_bed": "Допълнителни легла макс",
             "allow_one_only": "Сам в стая"
         }
+        
+        
+class RoomForm(BaseForms, forms.ModelForm):
+    class Meta:
+        model = models.RoomModel
+        fields = "name description floor_id type_id".split()
+        
+        labels = {
+            "name": "Име",
+            "type_id": "Тип стая",
+            "description": "Описание",
+            "floor_id": "Етаж"
+        }

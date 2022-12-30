@@ -24,7 +24,11 @@ def type_create(request):
 
 @login_required
 def types_show(request):
-    types = models.RoomTypeModel.objects.all()
+    if request.GET.get("type"):
+        type = request.GET.get("type")
+        types = models.RoomTypeModel.objects.filter(id=type)
+    else:
+        types = models.RoomTypeModel.objects.all()
     context = {"title": "Show all", "types": types}
     return render(request, template_name="types/types.html", context=context)
 
