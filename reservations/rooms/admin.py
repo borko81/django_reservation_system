@@ -9,3 +9,11 @@ class FloorAdmin(admin.ModelAdmin):
 @admin.register(BedModel)
 class BedsAdmin(admin.ModelAdmin):
     pass
+
+@admin.register(RoomTypeModel)
+class RoomTypeAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(RoomModel)
+class RoomModel(admin.ModelAdmin):
+    pass

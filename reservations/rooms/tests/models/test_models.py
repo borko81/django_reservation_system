@@ -34,3 +34,17 @@ class BedModelTest(TestCase):
     def test_try_duplicate_name_raise_error(self):
         with self.assertRaises(IntegrityError) as er:
             BedModel.objects.create(name="Редовно легло", name_short="РЛ")
+            
+
+class RoomTypeModelTest(TestCase):
+    def setUp(self):
+        type = RoomTypeModel(name="Double", r_bed=1, d_bed=0, allow_one_only=True)
+        type.save()
+        
+    def test_models_save_successfully(self):
+        self.assertEqual(len(RoomTypeModel.objects.all()), 1)
+        self.assertEqual(RoomTypeModel.objects.get(id=1).name_short, 'Doubl')
+        
+    def test_raise_error_with_not_unique_value_for_name(self):
+        with self.assertRaises(IntegrityError) as er:
+            RoomTypeModel.objects.create(name="Double")

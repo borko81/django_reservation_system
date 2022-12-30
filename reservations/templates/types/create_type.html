@@ -1,0 +1,15 @@
+{% extends 'types/base.html' %}
+
+{% block content %}
+<form action="" method="POST">
+    {% csrf_token %}
+    {{form}}
+    <input type="submit" class="btn btn-sm btn-secondary custom_submit form-control mt-2">
+</form>
+{% endblock content %}
+{% block end_script %}
+<script>
+    let dop = document.querySelector("#id_allow_one_only")
+    dop.classList.remove("form-control")
+</script>
+{% endblock end_script %}

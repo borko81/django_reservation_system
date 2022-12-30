@@ -25,3 +25,16 @@ class BedsForm(BaseForms, forms.ModelForm):
         
         labels = {"name": "Име", "name_short": "Кратко име", "dop": "Допълнително", "age": "Макс. възр."}
 
+
+class RoomTypeForm(BaseForms, forms.ModelForm):
+    class Meta:
+        model = models.RoomTypeModel
+        fields = 'name name_short r_bed d_bed allow_one_only'.split()
+        
+        labels = {
+            "name": "Име",
+            "name_short": "Кратко име",
+            "r_bed": "Редовни легла макс",
+            "d_bed": "Допълнителни легла макс",
+            "allow_one_only": "Сам в стая"
+        }

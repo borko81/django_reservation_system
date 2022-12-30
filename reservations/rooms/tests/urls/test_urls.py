@@ -3,6 +3,7 @@ from django.urls import resolve, reverse
 
 from rooms.floor_views import *
 from rooms.bed_views import *
+from rooms.type_views import *
 
 
 class TestFloorUrls(SimpleTestCase):
@@ -43,3 +44,21 @@ class TestBedsUlrs(SimpleTestCase):
     def test_bed_delete(self):
         url = reverse("rooms:bed_delete", args=[1])
         self.assertEqual(resolve(url).func, bed_delete)
+
+
+class TestTypesUrls(SimpleTestCase):
+    def test_menu_type(self):
+        url = reverse("rooms:type")
+        self.assertEqual(resolve(url).func, types_menu)
+
+    def test_show_all_types_url(self):
+        url = reverse("rooms:types")
+        self.assertEqual(resolve(url).func, types_show)
+
+    def test_edit_type_url(self):
+        url = reverse("rooms:type_edit", args=[1])
+        self.assertEqual(resolve(url).func, type_edit)
+
+    def test_delete_type_url(self):
+        url = reverse("rooms:type_delete", args=[1])
+        self.assertEqual(resolve(url).func, type_delete)

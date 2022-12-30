@@ -4,27 +4,24 @@ from . import views, bed_views, type_views, floor_views, rooms_views
 
 app_name = "rooms"
 urlpatterns = [
-    # Menu 
-    path('', views.menu_index, name="menu_index"),
-    
+    # Menu
+    path("", views.menu_index, name="menu_index"),
     # Floor
-    path('floors/', floor_views.floors_show, name="floors"),
-    path('floor/create/', floor_views.floor_create, name="floor_create"),
-    path('flors/edit/<int:id>/', floor_views.floor_edit, name="floor_edit"),
-    path('flors/delete/<int:id>/', floor_views.floor_delete, name="floor_delete"),
-    
+    path("floors/", floor_views.floors_show, name="floors"),
+    path("floor/create/", floor_views.floor_create, name="floor_create"),
+    path("flors/edit/<int:id>/", floor_views.floor_edit, name="floor_edit"),
+    path("flors/delete/<int:id>/", floor_views.floor_delete, name="floor_delete"),
     # Type
+    path("type/", type_views.types_menu, name="type"),
     path("types/", type_views.types_show, name="types"),
     path("type/create/", type_views.type_create, name="type_create"),
     path("types/edit/<int:id>/", type_views.type_edit, name="type_edit"),
     path("types/delete/<int:id>/", type_views.type_delete, name="type_delete"),
-    
     # Rooms
     path("rooms/", rooms_views.rooms_show, name="rooms"),
     path("room/create/", rooms_views.room_create, name="room_create"),
     path("room/edit/<int:id>/", rooms_views.room_edit, name="room_edit"),
     path("room/delete/<int:id>/", rooms_views.room_delete, name="room_delete"),
-    
     # Bed's
     path("bed/", bed_views.beds_menu, name="bed"),
     path("beds/", bed_views.beds_show, name="beds"),
