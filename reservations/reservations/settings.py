@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'rooms',
     'contragents',
     'auth_manager',
+    'price',
 ]
 
 MIDDLEWARE = [
