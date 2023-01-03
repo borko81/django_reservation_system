@@ -1,9 +1,5 @@
 {% extends 'rooms/base.html' %}
 
 {% block content %}
-<form action="" method="POST">
-    {% csrf_token %}
-    {{form}}
-    <input type="submit" class="btn btn-sm btn-secondary custom_submit form-control mt-2">
-</form>
+{% include 'global_form.html' %}
 {% endblock content %}

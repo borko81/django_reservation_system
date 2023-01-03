@@ -1,19 +1,25 @@
 from django.db import models
 
 
-class OwnerModel(models.Model):
+class ContractAndOwner(models.Model):
     name = models.CharField(max_length=50)
     mol = models.CharField(max_length=120)
     address = models.CharField(max_length=120)
-    email = models.EmailField(blank=True, null=True)
-    tel = models.CharField(max_length=13, blank=True, null=True)
-    http = models.URLField(blank=True, null=True)
     bulstat = models.IntegerField()
     idnum = models.CharField(max_length=13, blank=True, null=True)
-    logo = models.ImageField(upload_to="owner_image", blank=True, null=True)
 
     def __str__(self) -> str:
         return self.name
+    
+    class Meta:
+        abstract = True
+
+
+class OwnerModel(ContractAndOwner):
+    http = models.URLField(blank=True, null=True)
+    email = models.EmailField(blank=True, null=True)
+    tel = models.CharField(max_length=13, blank=True, null=True)
+    logo = models.ImageField(upload_to="owner_image", blank=True, null=True)
 
 
 class OwnerBank(models.Model):

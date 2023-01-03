@@ -1,0 +1,53 @@
+{% extends 'contragents/base.html' %}
+{% load static %}
+
+{% block content %}
+<ul style="list-style: none; margin:mt-2; padding: 0">
+    <li>
+        <a href="{% url 'contragent:contragents' %}">Всичко</a>
+        <a href="{% url 'contragent:contragents' %}?show=1">Само активни</a>
+        <a href="{% url 'contragent:contragents' %}?show=0">Само неактивни</a>
+    </li>
+</ul>
+<table class="table" id="myTable">
+    <thead class="table-dark">
+        <tr>
+            <th>Име</th>
+            <th>Мол</th>
+            <th>Адрес</th>
+            <th><input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for bulstat.."></th>
+            <th>ДДС Номер</th>
+            <th>Активен</th>
+            <th>Edit</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for contragent in contragents %}
+            {% if  contragent.is_active %}
+                <tr>
+                    <td>{{contragent.name}}</td>
+                    <td>{{contragent.mol}}</td>
+                    <td>{{contragent.address}}</td>
+                    <td>{{contragent.bulstat}}</td>
+                    <td>{{contragent.idnum|default:""}}</td>
+                    <td>{{contragent.is_active}}</td>
+                    <td><a href="{% url 'contragent:edit' contragent.id %}" class="btn btn-sm btn-success">Edit</a></td>
+                </tr>
+            {% else %}
+                <tr style="text-decoration:  line-through;">
+                    <td>{{contragent.name}}</td>
+                    <td>{{contragent.mol}}</td>
+                    <td>{{contragent.address}}</td>
+                    <td>{{contragent.bulstat}}</td>
+                    <td>{{contragent.idnum|default:""}}</td>
+                    <td>{{contragent.is_active}}</td>
+                    <td><a href="{% url 'contragent:edit' contragent.id %}" class="btn btn-sm btn-success">Edit</a></td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}
+{% block end_script %}
+<script src="{% static 'js/contract.js' %}"></script>
+{% endblock end_script %}

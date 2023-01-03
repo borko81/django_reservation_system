@@ -1,11 +1,11 @@
-{% extends 'types/base.html' %}
+{% extends 'contragents/base.html' %}
 
 {% block content %}
 {% include 'global_form.html' %}
 {% endblock content %}
 {% block end_script %}
 <script>
-    let dop = document.querySelector("#id_allow_one_only")
+    let dop = document.querySelector("#id_is_active")
     dop.classList.remove("form-control")
 </script>
 {% endblock end_script %}
